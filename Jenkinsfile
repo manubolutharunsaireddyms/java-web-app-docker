@@ -8,10 +8,10 @@ pipeline{
             git branch: 'main', credentialsId: 'afdd31f6-eed3-41b1-99fa-255552ce90d9', url: 'https://github.com/manubolutharunsaireddyms/java-web-app-docker.git'
             }
         }
-        stage('Build')
+        stage('Maven Clean Package')
         {
             steps{
-                echo 'Build'
+                 sh 'mvn clean package'
             }
         }
     }
