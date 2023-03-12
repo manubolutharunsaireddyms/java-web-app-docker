@@ -1,7 +1,7 @@
 pipeline{
     agent any
      environment {
-        buildnumber= BUILD_NUMBER;
+        buildnumber= BUILD_NUMBER
     }
     stages{
         stage('Git Clone')
