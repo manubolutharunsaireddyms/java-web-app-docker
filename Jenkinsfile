@@ -24,7 +24,8 @@ pipeline{
         {
             steps{
                 sh 'docker login -u awstharun -p Ur16cs035#'
-                sh 'docker push awstharun/java-web-app:latest'
+                sh 'docker tag my-image:latest docker.io/awstharun/java-web-app:latest'
+                sh 'docker push docker.io/awstharun/java-web-app:latest'
             }
         }
     }
