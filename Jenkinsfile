@@ -18,7 +18,13 @@ pipeline{
         {
             steps{
                 sh 'docker build -t java-web-app:latest .'
-               
+            }
+        }
+        stage('Docker push')
+        {
+            steps{
+                sh 'docker login -u awstharun -p Ur16cs035#'
+                sh 'docker push java-web-app:latest'
             }
         }
     }
