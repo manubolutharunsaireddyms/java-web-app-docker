@@ -17,9 +17,7 @@ pipeline{
         stage('Build Docker Image')
         {
             steps{
-                script{
-                     def dockerImage=docker.build("java-web-app:${env.BUILD_NUMBER}")
-                }
+                sh 'docker build -t java-web-app:latest .'
                
             }
         }
