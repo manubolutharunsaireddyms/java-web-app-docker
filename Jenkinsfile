@@ -17,7 +17,7 @@ pipeline{
         stage('Build Docker Image')
         {
             steps{
-                def dockerImage = docker.build("java-web-app:${env.BUILD_NUMBER}")
+                docker.build("java-web-app:${env.BUILD_NUMBER}")
             }
         }
     }
