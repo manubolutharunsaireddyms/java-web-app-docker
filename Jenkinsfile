@@ -26,7 +26,6 @@ pipeline{
         {
             steps{
                 sh 'docker login -u awstharun -p Ur16cs035#'
-                sh 'docker tag java-web-app:${buildnumber} docker.io/awstharun/java-web-app:${buildnumber}'
                 sh 'docker push docker.io/awstharun/java-web-app:${buildnumber}'
             }
         }
