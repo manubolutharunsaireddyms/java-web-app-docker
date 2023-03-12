@@ -28,5 +28,14 @@ pipeline{
                 sh 'docker push docker.io/awstharun/java-web-app:latest'
             }
         }
+        stage('Deploy Application')
+        {
+            steps{
+                sshagent(['Docker_SSH']) {
+                    sh 'ssh -o StrictHostKeyChecking=no tharun@172.31.13.213 docker rm -f javawebappcontainer || true'
+                    sh 'ssh -o StrictHostKeyChecking=no tharun@172.31.13.213 docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:latest'
+                    }
+            }
+        }
     }
 }
