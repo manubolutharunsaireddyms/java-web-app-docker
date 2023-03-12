@@ -32,9 +32,9 @@ pipeline{
         {
             steps{
                 sshagent(['Docker_SSH']) {
-                    sh 'ssh -o StrictHostKeyChecking=no tharun@172.31.13.213 docker rm -f javawebappcontainer || true'
-                    sh 'ssh -o StrictHostKeyChecking=no tharun@172.31.13.213 docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:latest'
-                    }
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 docker rm -f javawebappcontainer || true'
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:latest'
+                }
             }
         }
     }
