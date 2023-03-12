@@ -20,6 +20,7 @@ pipeline{
         {
             steps{
                 sh 'docker build -t java-web-app:${buildnumber} .'
+                echo '${buildnumber}'
             }
         }
         stage('Docker push')
