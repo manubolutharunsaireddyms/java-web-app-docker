@@ -33,6 +33,7 @@ pipeline{
         {
             steps{
                 sshagent(['Docker_SSH']) {
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker pull awstharun/java-web-app:${buildnumber}'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker rm -f javawebappcontainer || true'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:${buildnumber}'
                 }
