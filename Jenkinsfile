@@ -14,5 +14,11 @@ pipeline{
                  sh 'mvn clean package'
             }
         }
+        stage('Build Docker Image')
+        {
+            steps{
+                sh 'docker build -t awstharun/java-web-app:${env.BUILD_NUMBER}'
+            }
+        }
     }
 }
