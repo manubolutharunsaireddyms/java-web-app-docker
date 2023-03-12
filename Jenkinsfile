@@ -1,7 +1,7 @@
 pipeline{
     agent any
      environment {
-        buildnumber= "BUILD_NUMBER"
+        buildnumber= "${BUILD_NUMBER}"
     }
     stages{
         stage('Git Clone')
@@ -20,7 +20,7 @@ pipeline{
         {
             steps{
                 sh 'docker build -t java-web-app:${buildnumber} .'
-                echo "${buildnumber}"
+                echo '${buildnumber}'
             }
         }
         stage('Docker push')
