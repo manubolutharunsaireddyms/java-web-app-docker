@@ -17,7 +17,10 @@ pipeline{
         stage('Build Docker Image')
         {
             steps{
-                docker.build("java-web-app:${env.BUILD_NUMBER}")
+                script{
+                     docker.build("java-web-app:${env.BUILD_NUMBER}")
+                }
+               
             }
         }
     }
