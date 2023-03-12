@@ -17,7 +17,7 @@ pipeline{
         stage('Build Docker Image')
         {
             steps{
-                sh 'docker build -t awstharun/java-web-app:${env.BUILD_NUMBER}'
+                def dockerImage = docker.build("java-web-app:${env.BUILD_NUMBER}")
             }
         }
     }
