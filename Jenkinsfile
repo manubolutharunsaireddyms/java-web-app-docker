@@ -19,23 +19,23 @@ pipeline{
         stage('Build Docker Image')
         {
             steps{
-                sh 'docker build -t java-web-app:$BUILD_NUMBER .'
+                sh 'docker build -t java-web-app:${buildnumber} .'
             }
         }
         stage('Docker push')
         {
             steps{
                 sh 'docker login -u awstharun -p Ur16cs035#'
-                sh 'docker push docker.io/awstharun/java-web-app:$BUILD_NUMBER'
+                sh 'docker push docker.io/awstharun/java-web-app:${buildnumber}'
             }
         }
         stage('Deploy Application')
         {
             steps{
                 sshagent(['Docker_SSH']) {
-                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker pull awstharun/java-web-app:$BUILD_NUMBER'
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker pull awstharun/java-web-app:${buildnumber}'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker rm -f javawebappcontainer || true'
-                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:$BUILD_NUMBER'
+                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.213 sudo docker run -d -p 8080:8080 --name javawebappcontainer awstharun/java-web-app:${buildnumber}'
                 }
             }
         }
